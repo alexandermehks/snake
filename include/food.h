@@ -5,7 +5,7 @@ struct Food{
 
 };
 
-void renderFood(sf::RenderWindow & window, Food &food){
+void renderFood(sf::RenderWindow &window, Food &food){
      sf::CircleShape shape(20);
      shape.setPosition(food.x_pos, food.y_pos);
      shape.setFillColor(sf::Color::Red);

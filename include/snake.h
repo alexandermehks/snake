@@ -1,26 +1,38 @@
+#include <math.h>
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "food.h"
 
 struct Snake{
-
      //Parameters
      int length = 1;
+     int speed = 20;
      float x_pos = 350;
      float y_pos = 350;
-
-
-
+     int eat_cooldown = 0;
 };
+
 
 //Implemented this not working collision detection system, hehe.
 void eat(Snake &snake, Food &food){
-     if( food.x_pos + 20== int(snake.x_pos)) {
-          if(food.y_pos + 20 == int(snake.y_pos)){
-               std::cout << "HIT" << std::endl;
+          //distance formula
+          if(food.hasFoodOnMap && snake.eat_cooldown == 0){
+               int v1 = (food.x_pos - snake.x_pos)*2;
+               int v2 = (food.y_pos - snake.y_pos)*2;
+               int v3 = v1 + v2; 
+               v3 = abs(v3);
+               int distance = sqrt(v3);
+               std::cout << distance << std::endl;
+               if(distance <= 5){
+                    food.hasFoodOnMap = false;
+                    snake.length++;
+                    snake.eat_cooldown = 5;
+          }
+          }
+          if(snake.eat_cooldown != 0){
+               snake.eat_cooldown -= 1;
           }
      }
- }
      
 
 
@@ -56,24 +68,24 @@ void moveSnake(sf::RenderWindow &window, Snake &snake){
      //left
      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
           if(isInsideMap(window, snake, 1)){
-               snake.x_pos -=  0.1;
+               snake.x_pos -=  snake.speed;
           }
      }
      //right
      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
           if(isInsideMap(window, snake, 2)){
-               snake.x_pos +=  0.1;
+               snake.x_pos += snake.speed; 
           }
      }
      //up
      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
           if(isInsideMap(window, snake, 3)){
-               snake.y_pos -=  0.1;
+               snake.y_pos -= snake.speed; 
           }
      }//down
      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
           if(isInsideMap(window,snake,4)){
-               snake.y_pos +=  0.1;
+               snake.y_pos += snake.speed; 
           }
      }
 }

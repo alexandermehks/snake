@@ -1,15 +1,28 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "../include/snake.h"
+#include <sstream>
 
 int main()
 {
      uint32_t width = 1200;
      uint32_t height = 750;
      sf::RenderWindow window(sf::VideoMode(width, height), "Annoying Disco");
+     window.setFramerateLimit(60);
+
+     sf::Font font;
+     if(!font.loadFromFile("res/font.ttf")){
+          std::cout << "error";
+     }
+
 
      Snake snake;
      Food food;
+     
+     sf::Text score; 
+     score.setFont(font);
+     score.setPosition(1160, 0);
+
 
      while (window.isOpen())
      {
@@ -21,11 +34,12 @@ int main()
           }
 
           window.clear();
-          
-          renderSnake(window, snake);
           spawnFood(window, food);
-          eat(snake, food);
           moveSnake(window, snake);
+          renderSnake(window, snake);
+          eat(snake, food);
+          score.setString(std::to_string(snake.length));
+          window.draw(score);
           window.display();
      }
 

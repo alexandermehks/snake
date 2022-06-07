@@ -3,11 +3,7 @@ struct Food{
      float y_pos = 0;
      bool hasFoodOnMap = false;
 
-
-
 };
-
-
 
 void renderFood(sf::RenderWindow & window, Food &food){
      sf::CircleShape shape(20);
@@ -15,7 +11,6 @@ void renderFood(sf::RenderWindow & window, Food &food){
      shape.setFillColor(sf::Color::Red);
      window.draw(shape);
 }
-
 void spawnFood(sf::RenderWindow &window, Food &food){
      if(!food.hasFoodOnMap){
           srand(time(0));
@@ -26,7 +21,4 @@ void spawnFood(sf::RenderWindow &window, Food &food){
           food.hasFoodOnMap = true;
      }
      renderFood(window, food);
-     
 }
-
-

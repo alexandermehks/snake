@@ -12,7 +12,6 @@ struct Snake{
      int eat_cooldown = 0;
 };
 
-
 //Implemented this not working collision detection system, hehe.
 void eat(Snake &snake, Food &food){
           //distance formula
@@ -33,8 +32,6 @@ void eat(Snake &snake, Food &food){
                snake.eat_cooldown -= 1;
           }
      }
-     
-
 
 void renderSnake(sf::RenderWindow &window, Snake &snake){
      sf::RectangleShape rectshape;
@@ -63,7 +60,6 @@ bool isInsideMap(sf::RenderWindow &window, Snake &snake, int action){
      return false;
 }
 
-
 void moveSnake(sf::RenderWindow &window, Snake &snake){
      //left
      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
@@ -89,6 +85,3 @@ void moveSnake(sf::RenderWindow &window, Snake &snake){
           }
      }
 }
-
-
-

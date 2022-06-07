@@ -9,6 +9,7 @@ int main()
      sf::RenderWindow window(sf::VideoMode(width, height), "Annoying Disco");
 
      Snake snake;
+     Food food;
 
      while (window.isOpen())
      {
@@ -22,6 +23,8 @@ int main()
           window.clear();
           
           renderSnake(window, snake);
+          spawnFood(window, food);
+          eat(snake, food);
           moveSnake(window, snake);
           window.display();
      }

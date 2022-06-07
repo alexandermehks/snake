@@ -1,10 +1,10 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "food.h"
 
 struct Snake{
 
      //Parameters
-     int move_speed = 20;
      int length = 1;
      float x_pos = 350;
      float y_pos = 350;
@@ -12,6 +12,17 @@ struct Snake{
 
 
 };
+
+//Implemented this not working collision detection system, hehe.
+void eat(Snake &snake, Food &food){
+     if( food.x_pos + 20== int(snake.x_pos)) {
+          if(food.y_pos + 20 == int(snake.y_pos)){
+               std::cout << "HIT" << std::endl;
+          }
+     }
+ }
+     
+
 
 void renderSnake(sf::RenderWindow &window, Snake &snake){
      sf::RectangleShape rectshape;
@@ -40,6 +51,7 @@ bool isInsideMap(sf::RenderWindow &window, Snake &snake, int action){
      return false;
 }
 
+
 void moveSnake(sf::RenderWindow &window, Snake &snake){
      //left
      if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
@@ -65,3 +77,6 @@ void moveSnake(sf::RenderWindow &window, Snake &snake){
           }
      }
 }
+
+
+

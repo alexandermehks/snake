@@ -1,4 +1,5 @@
 #include <math.h>
+#include <vector>
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "food.h"
@@ -10,34 +11,41 @@ struct Snake{
      float x_pos = 350;
      float y_pos = 350;
      int eat_cooldown = 0;
+   
+
+
+     Snake() = default;
+     
 };
 
-//Implemented this not working collision detection system, hehe.
-void eat(Snake &snake, Food &food){
-          //distance formula
-          if(food.hasFoodOnMap && snake.eat_cooldown == 0){
-               int v1 = (food.x_pos - snake.x_pos)*2;
-               int v2 = (food.y_pos - snake.y_pos)*2;
-               int v3 = v1 + v2; 
-               v3 = abs(v3);
-               int distance = sqrt(v3);
-               std::cout << distance << std::endl;
-               if(distance <= 5){
-                    food.hasFoodOnMap = false;
-                    snake.length++;
-                    snake.eat_cooldown = 5;
-          }
-          }
-          if(snake.eat_cooldown != 0){
-               snake.eat_cooldown -= 1;
-          }
+void eat(sf::RectangleShape &rectshape, sf::CircleShape &shape, Snake &snake, Food &food){
+     if(rectshape.getGlobalBounds().intersects(shape.getGlobalBounds())){
+          food.hasFoodOnMap = false;
+          snake.length++;
+          snake.eat_cooldown = 5;
      }
+     snake.body.push_back(sf::Vector2f(snake.x_pos, snake.y_pos));
 
-void renderSnake(sf::RenderWindow &window, Snake &snake){
+}
+
+void renderSnake(sf::RenderWindow &window, Snake &snake, Food &food){
+     //Rendering snake
      sf::RectangleShape rectshape;
-     rectshape.setSize(sf::Vector2f(20,20));
+     rectshape.setSize(sf::Vector2f(10,10));
      rectshape.setPosition(snake.x_pos, snake.y_pos);
+
+     //Render food
+     sf::CircleShape shape(20);
+     shape.setPosition(food.x_pos, food.y_pos);
+     shape.setFillColor(sf::Color::Red);
+
+
+     eat(rectshape, shape, snake, food);
+     //Drawing to game window
+     
      window.draw(rectshape);
+     window.draw(shape);
+
 }
 
 bool isInsideMap(sf::RenderWindow &window, Snake &snake, int action){

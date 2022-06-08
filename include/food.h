@@ -20,5 +20,5 @@ void spawnFood(sf::RenderWindow &window, Food &food){
           food.y_pos = random_y- 20;
           food.hasFoodOnMap = true;
      }
-     renderFood(window, food);
+     //renderFood(window, food);
 }

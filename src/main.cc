@@ -18,6 +18,7 @@ int main()
 
      Snake snake;
      Food food;
+
      
      sf::Text score; 
      score.setFont(font);
@@ -36,8 +37,7 @@ int main()
           window.clear();
           spawnFood(window, food);
           moveSnake(window, snake);
-          renderSnake(window, snake);
-          eat(snake, food);
+          renderSnake(window, snake, food);
           score.setString(std::to_string(snake.length));
           window.draw(score);
           window.display();

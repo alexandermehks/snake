@@ -7,7 +7,7 @@
 
 struct Snake{
      //Parameters
-     int length = 1;
+     int length = 0;
      int speed = 20;
      float x_pos ;
      float y_pos ;
@@ -41,6 +41,7 @@ void renderSnake(sf::RenderWindow &window, Snake &snake, Food &food){
 
      for (int i = 0; i < snake.length; i++){
                snake_shape.setPosition(snake.trail[i]);
+               snake_shape.setFillColor(sf::Color(0,0,0));
                window.draw(snake_shape);
      }
      snake_shape.setPosition(snake.x_pos, snake.y_pos);

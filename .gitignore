@@ -3,3 +3,5 @@
 *.o
 .sfml-app
 sfml-app
+snake
+.snake

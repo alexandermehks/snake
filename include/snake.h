@@ -8,8 +8,8 @@ struct Snake{
      //Parameters
      int length = 1;
      int speed = 20;
-     float x_pos = 350;
-     float y_pos = 350;
+     float x_pos ;
+     float y_pos ;
      int eat_cooldown = 0;
    
 
@@ -18,13 +18,16 @@ struct Snake{
      
 };
 
+
 void eat(sf::RectangleShape &rectshape, sf::CircleShape &shape, Snake &snake, Food &food){
-     if(rectshape.getGlobalBounds().intersects(shape.getGlobalBounds())){
+     if(snake.eat_cooldown != 0){
+          snake.eat_cooldown -= 1;
+     }
+     if(rectshape.getGlobalBounds().intersects(shape.getGlobalBounds()) && snake.eat_cooldown == 0){
           food.hasFoodOnMap = false;
           snake.length++;
-          snake.eat_cooldown = 5;
+          snake.eat_cooldown = 10;
      }
-     snake.body.push_back(sf::Vector2f(snake.x_pos, snake.y_pos));
 
 }
 
@@ -92,4 +95,11 @@ void moveSnake(sf::RenderWindow &window, Snake &snake){
                snake.y_pos += snake.speed; 
           }
      }
+}
+
+
+void update(sf::RenderWindow &window, Snake &snake, Food &food){
+          spawnFood(window, food);
+          moveSnake(window, snake);
+          renderSnake(window, snake, food);
 }

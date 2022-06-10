@@ -1,6 +1,6 @@
 struct Food{
-     float x_pos = 0;
-     float y_pos = 0;
+     float x_pos;
+     float y_pos;
      bool hasFoodOnMap = false;
 
 };

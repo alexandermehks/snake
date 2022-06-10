@@ -14,7 +14,7 @@ int main()
      texture.loadFromFile("res/board.png");
      sf::Sprite sprite;
      sprite.setTexture(texture);
-    sprite.setScale(20,20);
+     sprite.setScale(20,20);
 
      sf::Font font;
      if(!font.loadFromFile("res/font.ttf")){

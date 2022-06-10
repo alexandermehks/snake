@@ -15,15 +15,12 @@ int main()
           std::cout << "error";
      }
 
-
      Snake snake;
      Food food;
-
      
      sf::Text score; 
      score.setFont(font);
      score.setPosition(1160, 0);
-
 
      while (window.isOpen())
      {
@@ -33,13 +30,11 @@ int main()
                if (event.type == sf::Event::Closed)
                     window.close();
           }
-
           window.clear();
           update(window, snake, food);
           score.setString(std::to_string(snake.length));
           window.draw(score);
           window.display();
      }
-
      return 0;
 }

@@ -14,13 +14,7 @@ struct Snake{
      int eat_cooldown = 0;
      int direction;
      std::deque<sf::Vector2f> trail;
-    
-
-
-     Snake() = default;
-     
 };
-
 
 void eat(sf::RectangleShape &rectshape, sf::CircleShape &shape, Snake &snake, Food &food){
      if(snake.eat_cooldown != 0){
@@ -49,38 +43,12 @@ void renderSnake(sf::RenderWindow &window, Snake &snake, Food &food){
                snake_shape.setPosition(snake.trail[i]);
                window.draw(snake_shape);
      }
-
-     //if(snake.direction == 2){
-          //for (int i = 0; i < snake.length; i++){
-               //snake_shape.setPosition(snake.x_pos + (i*15), snake.y_pos);
-               //window.draw(snake_shape);
-          //}
-     //}
-     //if(snake.direction == 1){
-          //for (int i = 0; i < snake.length; i++){
-               //snake_shape.setPosition(snake.x_pos - (i*15), snake.y_pos);
-               //window.draw(snake_shape);
-          //}
-     //}
-     //if(snake.direction == 3){
-          //for (int i = 0; i < snake.length; i++){
-               //snake_shape.setPosition(snake.x_pos , snake.y_pos - (i*15));
-               //window.draw(snake_shape);
-          //}
-     //}
-     //if(snake.direction == 4){
-          //for (int i = 0; i < snake.length; i++){
-               //snake_shape.setPosition(snake.x_pos , snake.y_pos + (i*15));
-               //window.draw(snake_shape);
-          //}
-     //}
      snake_shape.setPosition(snake.x_pos, snake.y_pos);
 
      //Render food
      sf::CircleShape shape(20);
      shape.setPosition(food.x_pos, food.y_pos);
      shape.setFillColor(sf::Color::Red);
-
 
      eat(snake_shape, shape, snake, food);
      //Drawing to game window
@@ -139,7 +107,6 @@ void moveSnake(sf::RenderWindow &window, Snake &snake){
           }
      }
 }
-
 
 void update(sf::RenderWindow &window, Snake &snake, Food &food){
           spawnFood(window, food);

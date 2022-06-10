@@ -4,7 +4,6 @@ struct Food{
      bool hasFoodOnMap = false;
 
 };
-
 void renderFood(sf::RenderWindow &window, Food &food){
      sf::CircleShape shape(20);
      shape.setPosition(food.x_pos, food.y_pos);

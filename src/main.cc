@@ -8,7 +8,7 @@ int main()
      uint32_t width = 1200;
      uint32_t height = 750;
      sf::RenderWindow window(sf::VideoMode(width, height), "Annoying Disco");
-     window.setFramerateLimit(60);
+     window.setFramerateLimit(30);
 
      sf::Font font;
      if(!font.loadFromFile("res/font.ttf")){
